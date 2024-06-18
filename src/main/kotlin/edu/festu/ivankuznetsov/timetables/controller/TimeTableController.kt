@@ -24,6 +24,7 @@ class TimeTableController {
     private final val service = TimeTableService()
     @GetMapping("/group/{groupId}")
     fun getByGroup(@PathVariable groupId: String): Mono<TimeTable> =  service.getByGroup(groupId).map {
+
         it.body
     }
     @GetMapping("/download/{fileName}")
