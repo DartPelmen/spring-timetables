@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource
 import org.springframework.core.io.UrlResource
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -22,6 +23,8 @@ class TimeTableController {
     private val fileStorageLocation: Path = Paths.get("src/main/resources/static").toAbsolutePath().normalize()
 
     private final val service = TimeTableService()
+    @CrossOrigin(origins = ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"])
+
     @GetMapping("/group/{groupId}")
     fun getByGroup(@PathVariable groupId: String): Mono<TimeTable> =  service.getByGroup(groupId).map {
 
